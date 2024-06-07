@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+  <title>MY SITE</title>
+  <style>
+        #div{
+          transition: all 1s;
+          margin-top: 50px;
+          width: 600px;
+          height:400px;
+          background-color:rgba(255,255,255,0.8);
+          margin:0px auto;
+          opacity: -1;
+          position:relative;
+          border-radius: 10px;
+          top:120px;
+          text-align: center;
+          padding:20px;
+        }
+        #inner_div{
+          width: 100%;
+          height:40%;
+          margin: 20px auto;
+        }
+        body{
+          background-color: lightgray;
+        }
+  </style>
+</head>
+<body>
+  <ul class="nav nav-tabs nav-justified">
+    <li class="active"><a href="#">Home</a></li>
+    <li onclick="qq_inf()"><a href="#">QQ信息</a></li>
+    <li><a href="#">QQ头像</a></li>
+    <li><a href="#">IP信息</a></li>
+  </ul>
+
+  <div id="div">
+    <div class="input-group">
+			<span class="input-group-addon">QQ</span>
+			<input type="text" class="form-control" placeholder="账号" onkeyup="qq_information()">
+		</div>
+
+    <div id="inner_div">
+
+    </div>
+  </div>
+  
+</body>
+  <script>
+    function qq_information(){
+      fetch('https://api.liitk.com/s/qqpcol/api?qq=1576384173').then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('请求失败');
+    }
+  }).then(function(data) {
+    // 处理返回的 JSON 数据
+    console.log(data);
+  })
+  .catch(function(error) {
+    // 错误处理
+    console.error(error);
+  });
+     
+    }
+    function qq_inf(){
+      var submit=document.querySelector("#div")
+      submit.style.opacity="1"
+    }
+  </script>
+</html>
